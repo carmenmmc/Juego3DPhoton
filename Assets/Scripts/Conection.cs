@@ -10,6 +10,10 @@ public class Conection : MonoBehaviourPunCallbacks
     public UnityEngine.UI.Button button;
     private bool loading = false;
 
+    public PhotonView playerPrefab;
+
+    public Transform spawnPoint;
+
     private void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -34,5 +38,9 @@ public class Conection : MonoBehaviourPunCallbacks
     public void PushButton()
     {
         PhotonNetwork.JoinOrCreateRoom("sala1", new RoomOptions(), TypedLobby.Default);
+
+        GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, spawnPoint.rotation);
+
+        player.GetComponent<PhotonView>().RPC("SetNameText", RpcTarget.AllBuffered, PlayerPrefs.GetString("PlayerName"));
     }
 }

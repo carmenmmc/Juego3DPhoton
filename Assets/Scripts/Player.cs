@@ -64,12 +64,12 @@ public class Player : MonoBehaviour
         line.SetPosition(0, shootPoint.position);
         if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, 50))
         {
+            Debug.Log("Disparo");
             line.SetPosition(1, hit.point);
             if (hit.transform.gameObject.CompareTag("Player"))
             {
                 hit.transform.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All);
             }
-            Debug.Log("Disparo");
         }
         else
         {

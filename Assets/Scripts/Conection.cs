@@ -37,10 +37,8 @@ public class Conection : MonoBehaviourPunCallbacks
 
     public void PushButton()
     {
-        PhotonNetwork.JoinOrCreateRoom("sala1", new RoomOptions(), TypedLobby.Default);
-
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, spawnPoint.rotation);
-
+        PhotonNetwork.JoinOrCreateRoom("sala1", new RoomOptions(), TypedLobby.Default);
         player.GetComponent<PhotonView>().RPC("SetNameText", RpcTarget.AllBuffered, PlayerPrefs.GetString("PlayerName"));
     }
 }

@@ -39,23 +39,16 @@ public class Player : MonoBehaviour
                 transform.up * rig.velocity.y;
 
 
-            transform.GetComponent<PhotonView>().RPC("Rotate", RpcTarget.All, Input.GetAxis("Mouse X"));
-            //transform.Rotate(transform.up * Input.GetAxis("Mouse X"));
-            
-
-
+            transform.GetComponent<PhotonView>().RPC("Rotate", RpcTarget.All, Input.GetAxis("Mouse X"));            
             anim.SetFloat("Velocity", rig.velocity.magnitude);
-
 
 
             if (canShoot && Input.GetButton("Fire1"))
             {
                 StartCoroutine("Fire");
             }
-        }
-       
+        }   
     }
-
     IEnumerator Fire()
     {
         canShoot = false;

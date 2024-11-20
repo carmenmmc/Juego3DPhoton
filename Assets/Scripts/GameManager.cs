@@ -12,10 +12,12 @@ public class GameManager : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Instantiate("Player1", spawn1.position, spawn1.rotation);
+            /*player.GetComponent<PhotonView>().RPC("SetNameText", RpcTarget.AllBuffered, PlayerPrefs.GetString("PlayerName"));*/
         }
         else
         {
             PhotonNetwork.Instantiate("Player2", spawn2.position, spawn2.rotation);
+            /*player.GetComponent<PhotonView>().RPC("SetNameText", RpcTarget.AllBuffered, PlayerPrefs.GetString("PlayerName"));*/
         }
     }
 
